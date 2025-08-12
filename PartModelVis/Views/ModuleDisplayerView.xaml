@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="PartModelVis.Views.ModuleDisplayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PartModelVis.Views"
+             xmlns:vm="clr-namespace:PartModelVis.ViewModels"
+             d:DataContext="{d:DesignInstance vm:ModuleDisplayerViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Height="Auto" Width="Auto">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border CornerRadius="10" Margin="15,-5,15,10">
+            <Border.Background>
+                <SolidColorBrush Color="#FF4C82AB"/>
+            </Border.Background>
+
+        </Border>
+
+        <Border CornerRadius="10" Margin="45,20,45,35" Grid.Column="1">
+            <Border.Background>
+                <SolidColorBrush Color="White"/>
+            </Border.Background>
+        </Border>
+
+        <Viewbox Stretch="Uniform" Margin="45,20,45,35">
+            <Canvas Width="700" Height="300" RenderTransformOrigin="0.5,0.5">
+                <!-- Right Lever -->
+                <Image Source="C:/Users/Dani/source/repos/PartModelVisualisation/Pictures with numbers/10533094.png" Canvas.Left="30" Canvas.Top="80" MaxWidth="250"/>
+                <!-- Left Lever -->
+                <Image Source="C:/Users/Dani/source/repos/PartModelVisualisation/Pictures with numbers/10533095.png" Canvas.Right="30" Canvas.Top="80" MaxWidth="250"/>
+
+                <!--SRC switch-->
+                <Image Source="{Binding ModuleVisual.SRCSwitch}" MaxWidth="30" RenderTransformOrigin="0.5,0.5" Canvas.Left="407" Canvas.Top="195" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-133.07"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+
+                <!--SRC-->
+                <Image Source="C:/Users/Dani/source/repos/PartModelVisualisation/Pictures with numbers/NO SCAS.png" Canvas.Left="250" Canvas.Top="100" MaxWidth="200" />
+
+            </Canvas>
+        </Viewbox>
+
+    </Grid>
+</UserControl>

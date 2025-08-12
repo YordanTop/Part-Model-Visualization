@@ -1,0 +1,11 @@
+<Ept>
+<Row variant="10542218-0009">
+	<Column name="proj_variant">10542218</Column>
+	<Column name="proj_carLine">BR_MMA</Column>
+	<Column name="proj_pcb">181919191991919</Column>
+	<Column name="proj_src">1415-06</Column>
+	<Column name="proj_srcSwitch">12123574-06</Column>
+	<Column name="proj_rightLever">121212-05</Column>
+	<Column name="proj_leftLever">121212-05</Column>
+</Row>
+</Ept>

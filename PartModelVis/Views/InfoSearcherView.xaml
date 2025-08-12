@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="PartModelVis.Views.InfoSearcherView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PartModelVis.Views"
+             xmlns:vm="clr-namespace:PartModelVis.ViewModels"
+             d:DataContext="{d:DesignInstance vm:InfoSearcherViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7.5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <!-- Module Variant -->
+        <Border Grid.Column="0" Margin="15,0,10,10" CornerRadius="10" Background="#FF4C82AB">
+
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Width="760">
+
+                <TextBlock
+                   FontSize="30"
+                   Padding="10,5,10,10"
+                   TextWrapping="Wrap">
+    
+                        <Run Text="Properties searcher:" />
+                </TextBlock>
+
+                <TextBox Margin="0,5,0,0"  Width="385" Height="30" FontSize="20"/>
+
+
+
+            </StackPanel>
+
+        </Border>
+
+
+        <Border Grid.Column="1" Margin="0,0,15,10" CornerRadius="10" Background="#FF4C82AB" >
+
+            <Button FontSize="20" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" Background="White" Command="{Binding OpenSettingsCommand}">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10" 
+                                
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>Add Module
+            </Button>
+            
+        </Border>
+    </Grid>
+</UserControl>

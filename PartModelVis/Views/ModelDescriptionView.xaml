@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="PartModelVis.Views.ModuleDescriptionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PartModelVis.Views"
+             xmlns:vm="clr-namespace:PartModelVis.ViewModels"
+             d:DataContext="{d:DesignInstance vm:ModuleDescriptionViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="800">
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+
+        <!-- Module Car Line -->
+        <Border Grid.Column="0" Grid.Row="0" Margin="5" CornerRadius="10" Background="#FF4C82AB">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="30"
+                       TextWrapping="Wrap">
+                
+                    <Run Text="Module car line:" />
+                    <Run Text="{Binding Module.CarLine}" />
+
+            </TextBlock>
+
+
+        </Border>
+
+
+        <!-- Module Variant -->
+        <Border Grid.Column="1" Grid.Row="0" Margin="5" CornerRadius="10" Background="#FF4C82AB">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontSize="30"
+                       TextWrapping="Wrap">
+                
+                    <Run Text="Module variant:" />
+                    <Run Text="{Binding Module.Variant}" />
+                
+            </TextBlock>
+
+
+        </Border>
+
+
+    </Grid>
+</UserControl>
