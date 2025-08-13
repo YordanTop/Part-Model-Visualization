@@ -14,6 +14,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
+            
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -32,7 +33,17 @@
         
         <!--Title-->
 
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">Module configuration.</TextBlock>
+        <Grid Grid.Column="0" HorizontalAlignment="Stretch">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30" Margin="50,0">Module configuration.</TextBlock>
+            <ComboBox  Grid.Column="1" Width="210" HorizontalAlignment="Left" Margin="5,10,10,5"></ComboBox>
+        </Grid>
+        
         
         <!--Module info configuration panel-->
         <Border CornerRadius="10" Margin="45,5,45,0" Grid.Row="1">
