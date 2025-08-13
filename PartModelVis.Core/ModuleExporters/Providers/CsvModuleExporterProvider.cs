@@ -1,4 +1,5 @@
-﻿using PartModelVis.Core.ModuleExporters.Exproters;
+﻿using PartModelVis.Core.Helper;
+using PartModelVis.Core.ModuleExporters.Exproters;
 using PartModelVis.Core.ModuleExporters.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace PartModelVis.Core.ModuleExporters.Providers
     {
         public CsvModuleExporterProvider()
         {
-            this._extansionFile = ".csv";
+            this._extansionFile = FileExtantion.CSV.GetExtention();
         }
 
         public override IExporterType CreateExporter(FileStream file)

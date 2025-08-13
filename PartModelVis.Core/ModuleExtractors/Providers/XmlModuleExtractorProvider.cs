@@ -1,4 +1,5 @@
 ﻿
+using PartModelVis.Core.Helper;
 using PartModelVis.Core.ModuleExtractors.Extractors;
 using PartModelVis.Core.ModuleExtractors.Interfaces;
 using System;
@@ -14,7 +15,7 @@ namespace PartModelVis.Core.ModuleExtractors.Providers
     {
         public XmlModuleExtractorProvider()
         {
-            this._extansionFile = ".xml";
+            this._extansionFile = FileExtantion.XML.GetExtention();
         }
 
         public override IExtractorType CreateExtractor(FileStream file)

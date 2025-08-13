@@ -1,4 +1,5 @@
-﻿using PartModelVis.Core.ModuleExporters.Exproters;
+﻿using PartModelVis.Core.Helper;
+using PartModelVis.Core.ModuleExporters.Exproters;
 using PartModelVis.Core.ModuleExporters.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace PartModelVis.Core.ModuleExporters.Providers
 
         public JsonModelExporterProvider()
         {
-            this._extansionFile = ".json";
+            this._extansionFile = FileExtantion.JSON.GetExtention();
         }
 
         public override IExporterType CreateExporter(FileStream file)

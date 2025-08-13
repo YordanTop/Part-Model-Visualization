@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PartModelVis.Core.Models
+namespace PartModelVis.Core.Helper
 {
     public enum FileExtantion
     {
@@ -33,7 +33,7 @@ namespace PartModelVis.Core.Models
                 return attribute.Description;
             }
 
-            return String.Empty;
+            return string.Empty;
         }
     }
 }
