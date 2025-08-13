@@ -33,7 +33,7 @@ namespace PartModelVis.Core.Configurations
 
             FactoryExtractors factory = new FactoryExtractors(extractorTypeFactories);
 
-            return factory.CreateExtractor(fileStream, extansion);
+            return factory.CreateType(fileStream, extansion);
         }
     }
 }
