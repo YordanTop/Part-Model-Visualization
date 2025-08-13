@@ -6,20 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PartModelVis.Core.ModuleExtractors.Interfaces
+namespace PartModelVis.Core.ModuleExporters.Interfaces
 {
-    /// <summary>
-    /// IExtractorTypeProvider има за цел да създава различни типове екстрактори
-    /// </summary>
-    public abstract class ExtractorTypeFactory: FactoryTypeHelper
+    public abstract class ExporterTypeFactory: FactoryTypeHelper
     {
         /// <summary>
         /// Създаване на инстанция от дадения тип.
         /// </summary>
         /// <param name="file">файла</param>
         /// <returns></returns>
-        public abstract IExtractorType CreateExtractor(FileStream file);
-
-
+        public abstract IExporterType CreateExporter(FileStream file);
     }
 }
