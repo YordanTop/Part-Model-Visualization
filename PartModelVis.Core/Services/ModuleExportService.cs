@@ -1,4 +1,8 @@
-﻿using PartModelVis.Core.Services.Interfaces;
+﻿using PartModelVis.Core.Configurations;
+using PartModelVis.Core.Handlers.Exceptions;
+using PartModelVis.Core.Helper;
+using PartModelVis.Core.Models;
+using PartModelVis.Core.Services.Interfaces;
 using PartModelVisualisation.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -11,15 +15,14 @@ namespace PartModelVis.Core.Services
 {
     public class ModuleExportService : IModuleExportService
     {
-        private readonly string _fileName;
-        public ModuleExportService(string filePath)
-        {
-            _fileName = filePath;
-        }
+        public required string FileName { get; set; }
 
-        public void SaveChanges(ModuleAlternativeProperty moduleProperty)
+        public void SaveChanges(Module module)
         {
-            
+
+            var exporter = ExporterConfiguration.InitializeExporter(FileName);
+
+            exporter.SerializeChanges(module);
         }
     }
 }

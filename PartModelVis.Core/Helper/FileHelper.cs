@@ -1,4 +1,5 @@
 ﻿using PartModelVis.Core.Configurations;
+using PartModelVis.Core.Handlers.Exceptions;
 using PartModelVis.Core.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,26 @@ namespace PartModelVis.Core.Helper
 {
     public static class FileHelper
     {
-        public static FileStream FetchFile(string filePath) => File.Open(filePath, FileMode.Open);
+        public static FileStream FetchFile(string filePath)
+        {
+            FileExistsHandler fileHandler = new FileExistsHandler(filePath);
 
-        public static string GetExtansion(FileStream file) => Path.GetExtension(file.Name);
+            if (!fileHandler.IsConditionValued())
+                throw new FileNotFoundException($"the file format was not declare!");
+            
+            return File.Open(filePath, FileMode.Open);
+        }
 
-        public static string? SelectingFilePath()
+        public static string GetExtansion(string filePath)
+        {
+            FileExistsHandler fileHandler = new FileExistsHandler(filePath);
+
+            if(!fileHandler.IsConditionValued())
+                throw new FileNotFoundException($"the file format was not declare!");
+
+            return Path.GetExtension(filePath);
+        }
+        public static string? OpenFilePath()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
@@ -29,5 +45,20 @@ namespace PartModelVis.Core.Helper
 
             return null;
         }
+
+        public static string? SaveFilePath()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog()
+            {
+                Title = "Save As",
+                Filter = "All file (*.*)|*.*",
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                return saveFileDialog.FileName;
+
+            return null;
+        }
+
     }
 }

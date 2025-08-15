@@ -64,7 +64,7 @@ namespace PartModelVis.Core.Models.ObservableDTO
             _backUp = null;
         }
 
-        public ModuleAlternativePropertyTransactionDTO ToModel() => new()
+        public ModuleAlternativeProperty ToModel() => new()
         {
             Name = this.Name,
             FilePropertyName = this.FilePropertyName,

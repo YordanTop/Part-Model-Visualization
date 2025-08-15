@@ -37,6 +37,7 @@
                 <MenuItem Header="Visualization configuration" Command="{Binding VisualConfigCommand}"/>
                 <MenuItem Header="Module info configuration" Command="{Binding ModuleConfigCommand}"/>
             </MenuItem>
+            <MenuItem Header="Tutorial"/>
         </Menu>
 
         <ContentControl Grid.Column="0"

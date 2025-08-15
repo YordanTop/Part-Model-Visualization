@@ -31,16 +31,5 @@ namespace PartModelVis.Core.Models.ObservableDTO
         [ObservableProperty]
         public string _sRC;
 
-        public Module NoneObservableModel() => new()
-        {
-            Variant = _variant,
-            CarLine = _carLine,
-            RightLever = _rightLever,
-            LeftLever = _leftLever,
-            SRCSwitch = _sRCSwitch,
-            PCB = _pCB,
-            SRC = _sRC,
-        };
-
     }
 }

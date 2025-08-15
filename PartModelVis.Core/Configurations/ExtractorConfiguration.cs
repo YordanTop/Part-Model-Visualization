@@ -29,7 +29,7 @@ namespace PartModelVis.Core.Configurations
 
             var fileStream = FileHelper.FetchFile(filePath);
 
-            string extansion = FileHelper.GetExtansion(fileStream);
+            string extansion = FileHelper.GetExtansion(fileStream.Name);
 
             FactoryExtractors factory = new FactoryExtractors(extractorTypeFactories);
 

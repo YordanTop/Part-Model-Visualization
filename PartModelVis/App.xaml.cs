@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PartModelVis.Core.Configurations;
+using PartModelVis.Core.Models;
 using PartModelVis.Core.Models.ObservableDTO;
 using PartModelVis.Core.Services;
 using PartModelVis.Core.Services.Interfaces;
@@ -40,15 +41,18 @@ namespace PartModelVis
 
             //Services
             services.AddTransient<IWindowDialogService,WindowService>();
+            services.AddTransient<IModuleExportService, ModuleExportService>();
+
+            //Models
+            services.AddSingleton<Module>();
 
             //Model DTOs
             services.AddSingleton<ModuleConfigurationDTO>();
-            services.AddSingleton<ModuleDTO>();
+            
             services.AddTransient<ObservableCollection<ModuleAlternativePropertyTransactionDTO>>(provider =>
             {
                 // DataGrid configuration setup
                 return new ObservableCollection<ModuleAlternativePropertyTransactionDTO>() {
-                new ModuleAlternativePropertyTransactionDTO(){Name = "Variant", FilePropertyName = "proj_variant"},
                 new ModuleAlternativePropertyTransactionDTO(){Name = "CarLine", FilePropertyName = "proj_carLine"},
                 new ModuleAlternativePropertyTransactionDTO(){Name = "RightLever", FilePropertyName = "proj_rightLever"},
                 new ModuleAlternativePropertyTransactionDTO(){Name = "LeftLever", FilePropertyName = "proj_leftLever"},

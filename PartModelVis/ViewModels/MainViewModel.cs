@@ -1,5 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using PartModelVis.Core.Configurations;
+using PartModelVis.Core.Handlers.Exceptions;
+using PartModelVis.Core.Models.ObservableDTO;
 using PartModelVis.Core.Services.Interfaces;
 using PartModelVis.Views.PopUps;
 using System;
@@ -7,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PartModelVis.ViewModels
 {
@@ -25,14 +29,19 @@ namespace PartModelVis.ViewModels
         [ObservableProperty]
         public ModuleDisplayerViewModel _moduleDisplayerViewModel;
 
+        //Model 
+        private ModuleConfiguration _moduleConfiguration;
+
         //Services
         private IWindowDialogService _windowService;
 
-        public MainViewModel(IWindowDialogService windowService, InfoSearcherViewModel infoSearcherViewModel, ModuleDescriptionViewModel moduleDescriptionViewModel, ModuleDisplayerViewModel moduleDisplayerViewModel)
+        public MainViewModel(ModuleConfigurationDTO moduleConfiguration ,IWindowDialogService windowService, InfoSearcherViewModel infoSearcherViewModel, ModuleDescriptionViewModel moduleDescriptionViewModel, ModuleDisplayerViewModel moduleDisplayerViewModel)
         {
             _infoSearcherViewModel = infoSearcherViewModel;
             _moduleDescriptionViewModel = moduleDescriptionViewModel;
             _moduleDisplayerViewModel = moduleDisplayerViewModel;
+
+            _moduleConfiguration = moduleConfiguration.NoneObservableModel();
 
             _windowService = windowService;
         }
@@ -40,13 +49,33 @@ namespace PartModelVis.ViewModels
         [RelayCommand]
         private void VisualConfig()
         {
-            _windowService.ShowDialog<PartsVisualSettingsView, PartsVisualSettingsViewModel>();
+
+            if (isModuleLoaded())
+                _windowService.ShowDialog<PartsVisualSettingsView, PartsVisualSettingsViewModel>();
         }
+
 
         [RelayCommand]
         private void ModuleConfig()
         {
-            _windowService.ShowDialog<ModuleSettingsView, ModuleSettingsViewModel>();
+            if(isModuleLoaded())
+                _windowService.ShowDialog<ModuleSettingsView, ModuleSettingsViewModel>();
+        }
+
+
+        private bool isModuleLoaded()
+        {
+            ModuleLoadHandler loadHandler = new ModuleLoadHandler(_moduleConfiguration.IsModuleLoaded);
+
+            loadHandler.MessageHandler = "The module must be added before configuration.";
+            bool isLoaded = loadHandler.IsConditionValued();
+
+            if (!isLoaded)
+            {
+                loadHandler.PopUpMessage();
+            }
+
+            return isLoaded;
         }
     }
 }

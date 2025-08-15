@@ -1,4 +1,5 @@
-﻿using PartModelVisualisation.Core.Models;
+﻿using PartModelVis.Core.Models;
+using PartModelVisualisation.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,12 @@ namespace PartModelVis.Core.Services.Interfaces
 {
     public interface IModuleExportService
     {
-
+        public string FileName { get; set; }
         /// <summary>
         /// Save and export the current properties of the model
         /// </summary>
         /// <param name="moduleProperty"></param>
-        public void SaveChanges(ModuleAlternativeProperty moduleProperty);
+        public void SaveChanges(Module moduleProperty);
         
 
     }

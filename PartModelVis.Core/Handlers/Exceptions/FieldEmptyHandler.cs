@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace PartModelVis.Core.Handlers.Exceptions
 {
-    public class FileEmptyHandler : IExceptionHandler
+    public class FieldEmptyHandler : IExceptionHandler
     {
         public string MessageHandler { get; set; }
 
         private string _filePath;
 
-        public FileEmptyHandler(string filePath)
+        public FieldEmptyHandler(string filePath)
         {
             _filePath = filePath;
         }
@@ -27,5 +27,9 @@ namespace PartModelVis.Core.Handlers.Exceptions
             return true;
         }
 
+        public void PopUpMessage()
+        {
+            MessageBox.Show(MessageHandler, "Field exception!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
 }

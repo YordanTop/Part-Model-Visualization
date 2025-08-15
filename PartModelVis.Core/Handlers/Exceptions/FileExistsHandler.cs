@@ -28,5 +28,10 @@ namespace PartModelVis.Core.Handlers.Exceptions
             return true;
 
         }
+
+        public void PopUpMessage()
+        {
+            MessageBox.Show(MessageHandler,"File exception!",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
 }

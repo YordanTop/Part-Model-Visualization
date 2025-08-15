@@ -19,6 +19,8 @@ namespace PartModelVis.Core.Models.ObservableDTO
         [ObservableProperty]
         private string _informationFile;
 
+
+
         public ModuleConfiguration NoneObservableModel() => new()
         {
             Variant = _variant,

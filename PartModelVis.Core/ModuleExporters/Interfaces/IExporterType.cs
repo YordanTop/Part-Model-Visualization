@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PartModelVis.Core.Models;
+using PartModelVisualisation.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,7 @@ namespace PartModelVis.Core.ModuleExporters.Interfaces
 {
     public interface IExporterType
     {
-        public void SaveChanges();
+        public void SerializeChanges(Module module);
 
     }
 }

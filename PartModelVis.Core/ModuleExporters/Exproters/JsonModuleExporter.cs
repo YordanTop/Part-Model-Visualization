@@ -1,9 +1,12 @@
-﻿using PartModelVis.Core.ModuleExporters.Interfaces;
+﻿using PartModelVis.Core.Models;
+using PartModelVis.Core.ModuleExporters.Interfaces;
+using PartModelVisualisation.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace PartModelVis.Core.ModuleExporters.Exproters
@@ -17,9 +20,9 @@ namespace PartModelVis.Core.ModuleExporters.Exproters
             _file = file;
         }
 
-        public void SaveChanges()
+        public void SerializeChanges(Module module)
         {
-            throw new NotImplementedException();
+            JsonSerializer.Serialize(_file,module);
         }
     }
 }

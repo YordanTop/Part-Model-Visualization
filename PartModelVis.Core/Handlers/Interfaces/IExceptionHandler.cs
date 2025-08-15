@@ -11,5 +11,7 @@ namespace PartModelVis.Core.Handlers.Interfaces
         public string MessageHandler { get; set; }
 
         public bool IsConditionValued();
+
+        public void PopUpMessage();
     }
 }

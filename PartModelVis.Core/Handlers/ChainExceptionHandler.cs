@@ -52,7 +52,7 @@ namespace PartModelVis.Core.Handlers
                 //Checks if the condition is false
                 if (!_chainHandler.Handler.IsConditionValued())
                 {
-                    MessageBox.Show(_chainHandler.Handler.MessageHandler);
+                    _chainHandler.Handler.PopUpMessage();
                     return false;
                 }
 

@@ -39,8 +39,9 @@ namespace PartModelVis.ViewModels
         {
             ChainExceptionHandler chainExceptionHandler = 
                 new ChainExceptionHandler(
-                    new FileEmptyHandler(_moduleConfiguration.InformationFile) { MessageHandler = "Fill the textboxes!" },
-                    new FileEmptyHandler(_moduleConfiguration.VisualFile) { MessageHandler = "Fill the textboxes!" },
+                    new FieldEmptyHandler(_moduleConfiguration.Variant) { MessageHandler = "Fill the textboxes!" },
+                    new FieldEmptyHandler(_moduleConfiguration.InformationFile) { MessageHandler = "Fill the textboxes!" },
+                    new FieldEmptyHandler(_moduleConfiguration.VisualFile) { MessageHandler = "Fill the textboxes!" },
                     new FileExistsHandler(_moduleConfiguration.InformationFile) { MessageHandler = $"The file \"{_moduleConfiguration.InformationFile}\" doesn't exist!"},
                     new FileExistsHandler(_moduleConfiguration.VisualFile) { MessageHandler = $"The file \"{_moduleConfiguration.VisualFile}\" doesn't exist!" }
                 );
@@ -48,7 +49,7 @@ namespace PartModelVis.ViewModels
             if (chainExceptionHandler.CheckConditions() == false)
                 return;
 
-            var extractor = ExtractorConfiguration.InitializeExtractor(ModuleConfiguration.InformationFile);
+           
 
         }
 
@@ -67,13 +68,13 @@ namespace PartModelVis.ViewModels
         [RelayCommand]
         private void SelectInformationFilePath()
         {
-            ModuleConfiguration.InformationFile = FileHelper.SelectingFilePath();
+            ModuleConfiguration.InformationFile = FileHelper.OpenFilePath();
         }
 
         [RelayCommand]
         private void SelectVisualFilePath()
         {
-            ModuleConfiguration.VisualFile = FileHelper.SelectingFilePath();
+            ModuleConfiguration.VisualFile = FileHelper.OpenFilePath();
         }
 
     }

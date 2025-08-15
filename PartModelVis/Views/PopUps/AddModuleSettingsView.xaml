@@ -43,39 +43,41 @@
         <TextBox Text="{Binding ModuleConfiguration.Variant, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="50" FontSize="30" Margin="10,10,10,10"  Grid.ColumnSpan="2" Grid.Row="2"/>
 
 
-        <!-- Module path visualisation-->
+        <!-- Module config-->
 
         <TextBlock
            FontSize="25"
            Padding="10"
            TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.Row="3">
     
-        <Run Text="Module path visualization:" />
+        <Run Text="Module path configuration:" />
         </TextBlock>
 
-        <Button Grid.Column="1" Grid.Row="3" Margin="0,10,10,0" Width="100"  HorizontalAlignment="Right" Command="{Binding SelectVisualFilePathCommand}">Select Path</Button>
+        <Button Grid.Column="1" Grid.Row="3" Margin="0,10,10,0" Width="100"  HorizontalAlignment="Right" Command="{Binding SelectInformationFilePathCommand}">Select Module</Button>
+
+        <TextBox Text="{Binding ModuleConfiguration.InformationFile, Mode=TwoWay}" HorizontalAlignment="Left" Width="460" Margin="10,10,5,10" VerticalAlignment="Stretch" FontSize="30"  Grid.ColumnSpan="2" Grid.Row="4"/>
 
 
-        <TextBox Text="{Binding ModuleConfiguration.VisualFile, Mode=TwoWay}" HorizontalAlignment="Left"  Width="460" FontSize="30" Margin="10,10,10,10" Grid.ColumnSpan="2" Grid.Row="4"/>
+        <Button Grid.Column="1" Grid.Row="4" Margin="0,10,10,10" Width="100"  HorizontalAlignment="Right" Command="{Binding CreateModuleCommand}">Create Module</Button>
 
 
-        <Button Grid.Column="1" Grid.Row="4" Margin="0,10,10,10" Width="100"  HorizontalAlignment="Right" Command="{Binding SetupVisualCommand}">Create Visuals</Button>
-        <!-- Module config-->
+        <!-- Module path visualisation-->
 
         <TextBlock
            FontSize="25"
            Padding="10"
            TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.Row="5">
     
-        <Run Text="Module path configuration:" />
+        <Run Text="Module path visualization:" />
         </TextBlock>
 
-        <Button Grid.Column="1" Grid.Row="5" Margin="0,10,10,0" Width="100"  HorizontalAlignment="Right" Command="{Binding SelectInformationFilePathCommand}">Select Path</Button>
-
-        <TextBox Text="{Binding ModuleConfiguration.InformationFile, Mode=TwoWay}" HorizontalAlignment="Left" Width="460" Margin="10,10,5,10" VerticalAlignment="Stretch" FontSize="30"  Grid.ColumnSpan="2" Grid.Row="6"/>
+        <Button Grid.Column="1" Grid.Row="5" Margin="0,10,10,0" Width="100"  HorizontalAlignment="Right" Command="{Binding SelectVisualFilePathCommand}">Select Visuals</Button>
 
 
-        <Button Grid.Column="1" Grid.Row="6" Margin="0,10,10,10" Width="100"  HorizontalAlignment="Right" Command="{Binding CreateModuleCommand}">Create Module</Button>
+        <TextBox Text="{Binding ModuleConfiguration.VisualFile, Mode=TwoWay}" HorizontalAlignment="Left"  Width="460" FontSize="30" Margin="10,10,10,10" Grid.ColumnSpan="2" Grid.Row="6"/>
+
+
+        <Button Grid.Column="1" Grid.Row="6" Margin="0,10,10,10" Width="100"  HorizontalAlignment="Right" Command="{Binding SetupVisualCommand}">Create Visuals</Button>
 
         <!--Bottom Buttons-->
 
