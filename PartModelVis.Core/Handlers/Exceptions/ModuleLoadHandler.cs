@@ -17,7 +17,7 @@ namespace PartModelVis.Core.Handlers.Exceptions
             _isLoaded = isLoaded;
         }
 
-        public bool IsConditionValued()
+        public bool IsConditionValid()
         {
             return _isLoaded;
         }

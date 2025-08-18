@@ -16,6 +16,11 @@ namespace PartModelVis.Core.ModuleExporters.Factory
             ElementTypeList = exporterList;
         }
 
+        /// <summary>
+        /// <see cref="CreateType"/> creates an exporter type if the extansion is currently supported.
+        /// </summary>
+        /// <returns>Returns an instance of <see cref="IExporterType"/></returns>
+        /// <exception cref="NotSupportedException">Throws error when the provided extansion is not supported</exception>
         public override IExporterType CreateType(FileStream file, string extansion)
         {
             var exporter = ElementTypeList.FirstOrDefault(exporter => exporter.CheckType(extansion));

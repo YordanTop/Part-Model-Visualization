@@ -47,14 +47,6 @@
                     <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*" FontSize="20"/>
                     <DataGridTextColumn Header="Picture Path" Binding="{Binding PicturePath}" Width="*" FontSize="20"/>
                 </DataGrid.Columns>
-
-                <!--Loading trigger-->
-               <!-- <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Loaded">
-                        <i:InvokeCommandAction Command="{Binding SaveChangesCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                -->
             </DataGrid>
 
 

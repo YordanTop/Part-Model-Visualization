@@ -1,4 +1,5 @@
-﻿using PartModelVisualisation.Core.Models;
+﻿using PartModelVis.Core.Handlers.Exceptions;
+using PartModelVisualisation.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace PartModelVis.Core.Models.ObservableDTO
             get { return _name; }
             set
             {
-                if (value == null || value.Equals(String.Empty))
+                if (string.IsNullOrEmpty(value))
                     _name = "Not named column";
                 else
                     _name = value;
@@ -37,7 +38,26 @@ namespace PartModelVis.Core.Models.ObservableDTO
         /// </summary>
         public string? Description { get; set; }
 
-        public string? PicturePath { get; set; }
+        private string? _picturePath;
+        public string? PicturePath {
+            get { return _picturePath; }
+            set
+            {
+                FileExistsHandler handler = new FileExistsHandler(value);
+
+
+               handler.MessageHandler = "this file path does not exist";
+
+                if (handler.IsConditionValid())
+                    _picturePath = value;
+                else
+                {
+                    handler.PopUpMessage();
+                    _picturePath = null;
+                }
+                 
+            }
+        }
 
 
         private ModuleAlternativePropertyTransactionDTO _backUp;
@@ -64,7 +84,7 @@ namespace PartModelVis.Core.Models.ObservableDTO
             _backUp = null;
         }
 
-        public ModuleAlternativeProperty ToModel() => new()
+        public ModuleAlternativeProperty ToModel => new()
         {
             Name = this.Name,
             FilePropertyName = this.FilePropertyName,

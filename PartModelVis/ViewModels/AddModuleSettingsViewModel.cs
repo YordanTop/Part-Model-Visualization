@@ -13,6 +13,7 @@ using System.DirectoryServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PartModelVis.ViewModels
@@ -23,15 +24,20 @@ namespace PartModelVis.ViewModels
         [ObservableProperty]
         private ModuleConfigurationDTO _moduleConfiguration;
 
+        private ModuleDTO _moduleDTO;
+
         //Services
         private IWindowDialogService _windowService;
 
         public AddModuleSettingsViewModel(IWindowDialogService windowService,
-                                 ModuleConfigurationDTO moduleConfiguration)
+                                 ModuleConfigurationDTO moduleConfiguration,
+                                 ModuleDTO moduleDTO)
         {
             _windowService = windowService;
 
             _moduleConfiguration = moduleConfiguration;
+
+            _moduleDTO = moduleDTO;
         }
 
         [RelayCommand]
@@ -49,19 +55,45 @@ namespace PartModelVis.ViewModels
             if (chainExceptionHandler.CheckConditions() == false)
                 return;
 
-           
+            UpdateModule();
 
+        }
+        
+
+        private void UpdateModule()
+        {
+            _moduleDTO.Variant = _moduleConfiguration.Variant;
+            _moduleDTO.CarLine = _moduleConfiguration.CarLine;
         }
 
         [RelayCommand]
         private void SetupVisual()
         {
+            ChainExceptionHandler chainExceptionHandler =
+                new ChainExceptionHandler(
+                    new FieldEmptyHandler(_moduleConfiguration.InformationFile) { MessageHandler = "Fill the module path configuration textbox!" },
+                    new FieldEmptyHandler(_moduleConfiguration.Variant) { MessageHandler = "Fill the module variant textbox!" });
+
+
+            if (chainExceptionHandler.CheckConditions() == false)
+                return;
+            
+
             _windowService.ShowDialog<PartsVisualSettingsView, PartsVisualSettingsViewModel>();
         }
 
         [RelayCommand]
         private void CreateModule()
         {
+            FieldEmptyHandler emptyHandler = new FieldEmptyHandler(_moduleConfiguration.Variant);
+            emptyHandler.MessageHandler = "Fill the module variant textbox!";
+
+            if (!emptyHandler.IsConditionValid())
+            {
+                emptyHandler.PopUpMessage();
+                return;
+            }
+
             _windowService.ShowDialog<ModuleSettingsView, ModuleSettingsViewModel>();
         }
 

@@ -29,25 +29,6 @@
 
         <Viewbox Stretch="Uniform" Margin="45,20,45,35">
             <Canvas Width="700" Height="300" RenderTransformOrigin="0.5,0.5">
-                <!-- Right Lever -->
-                <Image Source="C:/Users/Dani/source/repos/PartModelVisualisation/Pictures with numbers/10533094.png" Canvas.Left="30" Canvas.Top="80" MaxWidth="250"/>
-                <!-- Left Lever -->
-                <Image Source="C:/Users/Dani/source/repos/PartModelVisualisation/Pictures with numbers/10533095.png" Canvas.Right="30" Canvas.Top="80" MaxWidth="250"/>
-
-                <!--SRC switch-->
-                <Image Source="{Binding ModuleVisual.SRCSwitch}" MaxWidth="30" RenderTransformOrigin="0.5,0.5" Canvas.Left="407" Canvas.Top="195" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="-133.07"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Image.RenderTransform>
-                </Image>
-
-                <!--SRC-->
-                <Image Source="C:/Users/Dani/source/repos/PartModelVisualisation/Pictures with numbers/NO SCAS.png" Canvas.Left="250" Canvas.Top="100" MaxWidth="200" />
 
             </Canvas>
         </Viewbox>

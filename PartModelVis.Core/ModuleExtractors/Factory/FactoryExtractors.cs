@@ -19,6 +19,11 @@ namespace PartModelVis.Core.ModuleExtractors.Factory
             ElementTypeList = extractorList;
         }
 
+        /// <summary>
+        /// <see cref="CreateType"/> creates an extractor type if the extansion is currently supported.
+        /// </summary>
+        /// <returns>Returns an instance of <see cref="IExtractorType"/></returns>
+        /// <exception cref="NotSupportedException">Throws error when the provided extansion is not supported</exception>
         public override IExtractorType CreateType(FileStream file, string extansion)
         {
             var extractor = ElementTypeList.FirstOrDefault(extractor => extractor.CheckType(extansion));

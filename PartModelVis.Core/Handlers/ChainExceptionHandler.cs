@@ -50,7 +50,7 @@ namespace PartModelVis.Core.Handlers
             while(_chainHandler != null)
             {
                 //Checks if the condition is false
-                if (!_chainHandler.Handler.IsConditionValued())
+                if (!_chainHandler.Handler.IsConditionValid())
                 {
                     _chainHandler.Handler.PopUpMessage();
                     return false;

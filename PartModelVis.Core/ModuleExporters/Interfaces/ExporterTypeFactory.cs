@@ -11,10 +11,9 @@ namespace PartModelVis.Core.ModuleExporters.Interfaces
     public abstract class ExporterTypeFactory: FactoryTypeHelper
     {
         /// <summary>
-        /// Създаване на инстанция от дадения тип.
+        /// <see cref="CreateExporter"/> creates an exproter instance based of the exporter type.
         /// </summary>
-        /// <param name="file">файла</param>
-        /// <returns></returns>
+        /// <returns>returns <see cref="IExporterType"/> instance</returns>
         public abstract IExporterType CreateExporter(FileStream file);
     }
 }

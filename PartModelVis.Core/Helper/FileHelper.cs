@@ -16,7 +16,7 @@ namespace PartModelVis.Core.Helper
         {
             FileExistsHandler fileHandler = new FileExistsHandler(filePath);
 
-            if (!fileHandler.IsConditionValued())
+            if (!fileHandler.IsConditionValid())
                 throw new FileNotFoundException($"the file format was not declare!");
             
             return File.Open(filePath, FileMode.Open);
@@ -26,7 +26,7 @@ namespace PartModelVis.Core.Helper
         {
             FileExistsHandler fileHandler = new FileExistsHandler(filePath);
 
-            if(!fileHandler.IsConditionValued())
+            if(!fileHandler.IsConditionValid())
                 throw new FileNotFoundException($"the file format was not declare!");
 
             return Path.GetExtension(filePath);

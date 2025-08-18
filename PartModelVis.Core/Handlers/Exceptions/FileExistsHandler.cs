@@ -19,7 +19,7 @@ namespace PartModelVis.Core.Handlers.Exceptions
             _filePath = filePath;
         }
 
-        public bool IsConditionValued()
+        public bool IsConditionValid()
         {
             if (!File.Exists(_filePath))
             {

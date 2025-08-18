@@ -10,12 +10,15 @@ namespace PartModelVis.Core.Helper
 {
     public abstract class FactoryTypeHelper
     {
+        /// <summary>
+        /// The format extansion.
+        /// </summary>
         protected string _extansionFile { get; set; }
         /// <summary>
-        /// Проверява типът на файла.
+        /// Checks the extansion of the file.
         /// </summary>
-        /// <param name="extansion">типът на файла.</param>
-        /// <returns>Резултата от самото сверяване.</returns>
+        /// <param name="extansion">extansion type.</param>
+        /// <returns>return if the extansion is form a given type.</returns>
         public bool CheckType(string extansion) => _extansionFile.Equals(extansion);
 
     }

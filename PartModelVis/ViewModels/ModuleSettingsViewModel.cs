@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using PartModelVis.Core.Configurations;
 using PartModelVis.Core.Helper;
 using PartModelVis.Core.Models;
 using PartModelVis.Core.Models.ObservableDTO;
@@ -18,20 +19,23 @@ namespace PartModelVis.ViewModels
 {
     public partial class ModuleSettingsViewModel:ObservableObject
     {
-
-        [ObservableProperty]
-        private Module _module;
-
+        
         [ObservableProperty]
         private ObservableCollection<ModuleAlternativePropertyTransactionDTO> _moduleAlternativeProperties;
 
+        private ModuleConfigurationDTO _moduleConfigurationDTO;
+
+        //Model
+        private Module _module;
         //Services
         private IModuleExportService _moduleExportService;
 
 
-        public ModuleSettingsViewModel(Module module, IModuleExportService moduleExportSerivce, ObservableCollection<ModuleAlternativePropertyTransactionDTO> moduleAlternativeProperties)
+        public ModuleSettingsViewModel(ModuleDTO moduleDTO, ModuleConfigurationDTO moduleConfigurationDTO, IModuleExportService moduleExportSerivce, ObservableCollection<ModuleAlternativePropertyTransactionDTO> moduleAlternativeProperties)
         {
-            _module = module;
+            _module = moduleDTO.ToModel;
+
+            _moduleConfigurationDTO = moduleConfigurationDTO;
 
             _moduleExportService = moduleExportSerivce;
 
@@ -42,14 +46,38 @@ namespace PartModelVis.ViewModels
         [RelayCommand]
         private void SaveChanges()
         {
-            _module.ModuleProperties = new List<ModuleAlternativeProperty>();
-            foreach (var item in _moduleAlternativeProperties)
-            {
-                _module.ModuleProperties.Add(item.ToModel());
-            }
+            UpdateModuleProperties(_moduleConfigurationDTO.ToModel);
+            HandleFileExport(_module);
+            UpdateInformationFile();
+        }
 
+
+        private void UpdateModuleProperties(ModuleConfiguration module)
+        {
+
+            _module.Variant = module.Variant;
+
+            _module.CarLine = module.CarLine;
+
+            _module.ModuleProperties = _moduleAlternativeProperties
+                .Select(item => item.ToModel)
+                .ToList();
+
+        }
+
+        private void HandleFileExport(Module module)
+        {
             _moduleExportService.FileName = FileHelper.SaveFilePath();
-            _moduleExportService.SaveChanges(_module);
+
+            if (!string.IsNullOrEmpty(_moduleExportService.FileName))
+            {
+                _moduleExportService.SaveChanges(module);
+            }
+        }
+
+        private void UpdateInformationFile()
+        {
+            _moduleConfigurationDTO.InformationFile = _moduleExportService.FileName;
         }
 
     }

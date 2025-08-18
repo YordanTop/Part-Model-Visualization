@@ -24,7 +24,7 @@ namespace PartModelVis.Core.Handlers.Exceptions
             MessageBox.Show(MessageHandler, "Extansion exception!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        public bool IsConditionValued()
+        public bool IsConditionValid()
         {
             throw new NotImplementedException();
         }

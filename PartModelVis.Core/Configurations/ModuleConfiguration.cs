@@ -9,6 +9,9 @@ namespace PartModelVis.Core.Configurations
     public class ModuleConfiguration
     {
         public string Variant { get; set; }
+
+        public string CarLine { get; set; }
+
         public string VisualFile { get; set; }  
         public string InformationFile { get; set; } 
 
@@ -16,13 +19,8 @@ namespace PartModelVis.Core.Configurations
         {
             get
             {
-                if(string.IsNullOrEmpty(Variant)) return false;
-
-                if(string.IsNullOrEmpty(VisualFile)) return false;
-
-                if(string.IsNullOrEmpty(InformationFile)) return false;
-
-                return true;
+                var properties = new[] { Variant, CarLine, VisualFile, InformationFile };
+                return properties.All(p => !string.IsNullOrEmpty(p));
             }
         }
     }

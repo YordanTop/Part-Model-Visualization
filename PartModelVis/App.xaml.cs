@@ -44,7 +44,7 @@ namespace PartModelVis
             services.AddTransient<IModuleExportService, ModuleExportService>();
 
             //Models
-            services.AddSingleton<Module>();
+            services.AddSingleton<ModuleDTO>();
 
             //Model DTOs
             services.AddSingleton<ModuleConfigurationDTO>();

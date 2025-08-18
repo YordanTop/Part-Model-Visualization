@@ -15,6 +15,8 @@ namespace PartModelVis.Core.Models
         /// </summary>
         public string Variant { get; set; }
 
+        public string CarLine { get; set; }
+
         public List<ModuleAlternativeProperty> ModuleProperties { get; set; }
 
     }

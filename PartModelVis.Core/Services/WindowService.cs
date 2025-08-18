@@ -14,6 +14,9 @@ namespace PartModelVis.Core.Services
 {
     public class WindowService:IWindowDialogService
     {
+        /// <summary>
+        /// The service provider gives use already DI views and view models
+        /// </summary>
         private readonly IServiceProvider _serviceProvider;
 
         public WindowService(IServiceProvider serviceProvider)

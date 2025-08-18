@@ -28,7 +28,7 @@ namespace PartModelVis.Core.Configurations
             FileExistsHandler fileExistsHandler = new FileExistsHandler(filePath);
 
             // if the file does not exist it create a new file otherwise it fetches the existing one.
-            FileStream fileStream = fileExistsHandler.IsConditionValued()?
+            FileStream fileStream = fileExistsHandler.IsConditionValid()?
                                                                             FileHelper.FetchFile(filePath):
                                                                             File.Create(filePath);
 

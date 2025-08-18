@@ -30,7 +30,7 @@ namespace PartModelVis.ViewModels
         public ModuleDisplayerViewModel _moduleDisplayerViewModel;
 
         //Model 
-        private ModuleConfiguration _moduleConfiguration;
+        private ModuleConfigurationDTO _moduleConfiguration;
 
         //Services
         private IWindowDialogService _windowService;
@@ -41,7 +41,7 @@ namespace PartModelVis.ViewModels
             _moduleDescriptionViewModel = moduleDescriptionViewModel;
             _moduleDisplayerViewModel = moduleDisplayerViewModel;
 
-            _moduleConfiguration = moduleConfiguration.NoneObservableModel();
+            _moduleConfiguration = moduleConfiguration;
 
             _windowService = windowService;
         }
@@ -65,10 +65,10 @@ namespace PartModelVis.ViewModels
 
         private bool isModuleLoaded()
         {
-            ModuleLoadHandler loadHandler = new ModuleLoadHandler(_moduleConfiguration.IsModuleLoaded);
+            ModuleLoadHandler loadHandler = new ModuleLoadHandler(_moduleConfiguration.ToModel.IsModuleLoaded);
 
             loadHandler.MessageHandler = "The module must be added before configuration.";
-            bool isLoaded = loadHandler.IsConditionValued();
+            bool isLoaded = loadHandler.IsConditionValid();
 
             if (!isLoaded)
             {

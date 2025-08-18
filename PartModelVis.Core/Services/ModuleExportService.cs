@@ -19,9 +19,7 @@ namespace PartModelVis.Core.Services
 
         public void SaveChanges(Module module)
         {
-
             var exporter = ExporterConfiguration.InitializeExporter(FileName);
-
             exporter.SerializeChanges(module);
         }
     }

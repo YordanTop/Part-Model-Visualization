@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using PartModelVis.Core.Configurations;
+using PartModelVisualisation.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,19 +18,14 @@ namespace PartModelVis.Core.Models.ObservableDTO
         private string _carLine;
 
         [ObservableProperty]
-        public string _rightLever;
+        private List<ModuleAlternativeProperty> _modulesProperties;
 
-        [ObservableProperty]
-        public string _leftLever;
-
-        [ObservableProperty]
-        public string _sRCSwitch;
-
-        [ObservableProperty]
-        public string _pCB;
-
-        [ObservableProperty]
-        public string _sRC;
+        public Module ToModel => new()
+        {
+            Variant = _variant,
+            CarLine = _carLine,
+            ModuleProperties = _modulesProperties
+        };
 
     }
 }

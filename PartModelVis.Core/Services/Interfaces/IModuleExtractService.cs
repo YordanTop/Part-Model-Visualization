@@ -1,5 +1,4 @@
 ﻿using PartModelVis.Core.Models;
-using PartModelVisualisation.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace PartModelVis.Core.Services.Interfaces
 {
-    public interface IModuleExportService
+    public interface IModuleExtractService
     {
         /// <summary>
-        /// The name of the saving file.
+        /// The name of the extracting file.
         /// </summary>
         public string FileName { get; set; }
-        /// <summary>
-        /// Save and export the current properties of the module.
-        /// </summary>
-        public void SaveChanges(Module module);
-        
 
+        /// <summary>
+        /// Extract the content about the module from the file.
+        /// </summary>
+        /// <param name="moduleVariant">The variant of the module</param>
+        /// <returns>Returns the content of the module</returns>
+        public Module ExtractModule(string moduleVariant);
     }
 }

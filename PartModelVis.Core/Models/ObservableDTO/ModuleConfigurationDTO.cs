@@ -14,6 +14,9 @@ namespace PartModelVis.Core.Models.ObservableDTO
         private string _variant;
 
         [ObservableProperty]
+        private string _carLine;
+
+        [ObservableProperty]
         private string _visualFile;
 
         [ObservableProperty]
@@ -21,9 +24,10 @@ namespace PartModelVis.Core.Models.ObservableDTO
 
 
 
-        public ModuleConfiguration NoneObservableModel() => new()
+        public ModuleConfiguration ToModel => new()
         {
             Variant = _variant,
+            CarLine = _carLine,
             VisualFile = _visualFile,
             InformationFile = _informationFile 
         };
