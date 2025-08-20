@@ -11,7 +11,7 @@ namespace PartModelVis.Core.ModuleExtractors.Extractors
 {
     public class JsonModuleExtractor : IExtractorType
     {
-        public Module ExtractModule(string moduleVariant)
+        public Module ExtractModule(string moduleVariant, string moduleCarLine)
         {
             throw new NotImplementedException();
         }

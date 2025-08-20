@@ -6,14 +6,10 @@
     <ModuleAlternativeProperty>
       <Name>RightLever</Name>
       <FilePropertyName>proj_rightLever</FilePropertyName>
-      <Description>Дясна ръчка</Description>
-      <PicturePath>C:\Users\Dani\source\repos\PartModelVisualisation\Pictures with numbers\10533095.png</PicturePath>
     </ModuleAlternativeProperty>
     <ModuleAlternativeProperty>
       <Name>LeftLever</Name>
       <FilePropertyName>proj_leftLever</FilePropertyName>
-      <Description>Лява ръчка</Description>
-      <PicturePath>C:\Users\Dani\source\repos\PartModelVisualisation\Pictures with numbers\10533091.png</PicturePath>
     </ModuleAlternativeProperty>
     <ModuleAlternativeProperty>
       <Name>PCB</Name>
@@ -22,6 +18,7 @@
     <ModuleAlternativeProperty>
       <Name>SRC</Name>
       <FilePropertyName>proj_src</FilePropertyName>
+      <PicturePath>C:\Users\Dani\source\repos\PartModelVisualisation\Pictures with numbers\No SCAS.png</PicturePath>
     </ModuleAlternativeProperty>
     <ModuleAlternativeProperty>
       <Name>SRCSwitch</Name>

@@ -24,9 +24,13 @@ namespace PartModelVis.Core.ModuleExporters.Exproters
 
         public void SerializeChanges(Module module)
         {
-            _serializer.Serialize(_file, module);
+      
+           _serializer.Serialize(_file, module);
         }
 
-
+        public void Dispose()
+        {
+            _file.Dispose();
+        }
     }
 }

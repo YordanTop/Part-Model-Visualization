@@ -4,6 +4,7 @@ using PartModelVis.Core.Configurations;
 using PartModelVis.Core.Handlers;
 using PartModelVis.Core.Handlers.Exceptions;
 using PartModelVis.Core.Helper;
+using PartModelVis.Core.Models;
 using PartModelVis.Core.Models.ObservableDTO;
 using PartModelVis.Core.Services.Interfaces;
 using PartModelVis.Views.PopUps;
@@ -25,19 +26,23 @@ namespace PartModelVis.ViewModels
         private ModuleConfigurationDTO _moduleConfiguration;
 
         private ModuleDTO _moduleDTO;
+        private Module _module;
 
         //Services
         private IWindowDialogService _windowService;
 
         public AddModuleSettingsViewModel(IWindowDialogService windowService,
                                  ModuleConfigurationDTO moduleConfiguration,
-                                 ModuleDTO moduleDTO)
+                                 ModuleDTO moduleDTO,
+                                 Module module)
         {
             _windowService = windowService;
 
             _moduleConfiguration = moduleConfiguration;
 
             _moduleDTO = moduleDTO;
+
+            _module = module;
         }
 
         [RelayCommand]
@@ -74,7 +79,8 @@ namespace PartModelVis.ViewModels
                 new ChainExceptionHandler(
                     new FieldEmptyHandler(ModuleConfiguration.InformationFile) { MessageHandler = "Fill the module path configuration textbox!" },
                     new FieldEmptyHandler(ModuleConfiguration.Variant) { MessageHandler = "Fill the module variant textbox!" },
-                    new FieldEmptyHandler(ModuleConfiguration.CarLine) { MessageHandler = "Fill the car line textbox!" });
+                    new FieldEmptyHandler(ModuleConfiguration.CarLine) { MessageHandler = "Fill the car line textbox!" },
+                    new FileExistsHandler(ModuleConfiguration.InformationFile) { MessageHandler = $"The file \"{_moduleConfiguration.InformationFile}\" doesn't exist!" });
 
 
             if (chainExceptionHandler.CheckConditions() == false)

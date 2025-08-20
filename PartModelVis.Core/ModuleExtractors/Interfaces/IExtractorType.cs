@@ -18,7 +18,7 @@ namespace PartModelVis.Core.ModuleExtractors.Interfaces
         /// </summary>
         /// <param name="moduleVariant">Варианта на модела.</param>
         /// <returns>Връща инфорамация за модула./returns>
-        public Module ExtractModule(string moduleVariant);
+        public Module ExtractModule(string moduleVariant, string moduleCarLine);
 
     }
 }

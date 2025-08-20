@@ -28,5 +28,11 @@ namespace PartModelVis.Core.ModuleExporters.Exproters
 
             _file.Write(csvStringToByte, 0, csvStringToByte.Length);    
         }
+
+
+        public void Dispose()
+        {
+            _file.Dispose();
+        }
     }
 }

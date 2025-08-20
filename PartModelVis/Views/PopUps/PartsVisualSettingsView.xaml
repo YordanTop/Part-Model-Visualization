@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PartModelVis.Views.PopUps"
+        xmlns:vm="clr-namespace:PartModelVis.ViewModels"
+        xmlns:models="clr-namespace:PartModelVis.Core.Models;assembly=PartModelVis.Core"
         mc:Ignorable="d"
-        Title="PartsVisualSettingsView" MinHeight="450" MinWidth="800">
+        d:DataContext="{d:DesignInstance vm:PartsVisualSettingsViewModel}"
+        Title="PartsVisualSettingsView" MinHeight="450" MinWidth="800"
+        
+        >
     <Grid>
 
         <Grid Height="Auto" Width="Auto">
@@ -30,7 +35,7 @@
             </Border>
 
             <!--Title-->
-            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" >Visuals Configuration.</TextBlock>
+            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" >Visuals configuration.</TextBlock>
 
             <!--Module info configuration panel-->
             <Border CornerRadius="10" Margin="45,5,45,0" Grid.Row="1">
@@ -42,7 +47,37 @@
 
             <Viewbox Stretch="Uniform" Margin="50,10,50,10" Grid.Row="1">
                 <Canvas Width="700" Height="300">
-                   
+                    <ItemsControl ItemsSource="{Binding PartImages}">
+
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="{x:Type ContentPresenter}">
+                                <Setter Property="Canvas.Left" Value="{Binding PositionX}" />
+                                <Setter Property="Canvas.Top" Value="{Binding PositionY}" />
+                                <Setter Property="Width" Value="{Binding Width}"/>
+                                <Setter Property="Height" Value="{Binding Height}"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type models:ModulePartImage}">
+                                <Image Source="{Binding Image}" 
+                           Width="{Binding Width}" 
+                           Height="{Binding Height}" 
+                           RenderTransformOrigin="0.5,0.5">
+                                    <Image.RenderTransform>
+                                        <RotateTransform Angle="{Binding Rotation}" />
+                                    </Image.RenderTransform>
+                                </Image>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Canvas>
             </Viewbox>
 
@@ -59,7 +94,7 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
-                </Button.Template> Save module configuration
+                </Button.Template> Save module visuals
             </Button>
 
         </Grid>

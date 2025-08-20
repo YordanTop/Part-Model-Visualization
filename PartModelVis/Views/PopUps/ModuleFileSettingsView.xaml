@@ -32,7 +32,7 @@
         </Border>
         
         <!--Title-->
-        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" >Create module.</TextBlock>
+        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" >Module configuration.</TextBlock>
 
         <!--Module info configuration panel-->
         <Border CornerRadius="10" Margin="45,5,45,0" Grid.Row="1">

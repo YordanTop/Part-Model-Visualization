@@ -23,6 +23,9 @@ namespace PartModelVis.Core.Services
 
         public List<ModulePartImage> ImageCollectionInstance(Module module)
         {
+            if (module == null)
+                return new List<ModulePartImage>();
+
             var newCollection = new List<ModulePartImage>();
 
             foreach (var moduleRow in module.ModuleProperties)

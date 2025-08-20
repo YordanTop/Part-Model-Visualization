@@ -22,16 +22,9 @@ namespace PartModelVis.ViewModels
 
         //Services
         private IModuleVisualizeService _visualizeService;
-        private IModuleExtractService _moduleExtractService;
 
-        public PartsVisualSettingsViewModel(ModuleConfigurationDTO moduleDTO, IModuleExtractService moduleExtractService, IModuleVisualizeService visualizeService)
+        public PartsVisualSettingsViewModel(ModuleConfigurationDTO moduleDTO, Module module, IModuleVisualizeService visualizeService)
         {
-            _moduleExtractService = moduleExtractService;
-
-            _moduleExtractService.FileName = moduleDTO.InformationFile;
-
-            var module = _moduleExtractService.ExtractModule(moduleDTO.Variant);
-
             _visualizeService = visualizeService;
 
             var imageCollection = _visualizeService.ImageCollectionInstance(module);

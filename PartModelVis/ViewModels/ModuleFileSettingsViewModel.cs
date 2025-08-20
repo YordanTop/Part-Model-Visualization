@@ -31,12 +31,13 @@ namespace PartModelVis.ViewModels
         private IModuleExportService _moduleExportService;
 
 
-        public ModuleFileSettingsViewModel(ModuleDTO moduleDTO,
+        public ModuleFileSettingsViewModel(Module module,
                                            ModuleConfigurationDTO moduleConfigurationDTO,
                                            IModuleExportService moduleExportSerivce,
+
                                            ObservableCollection<ModuleAlternativePropertyTransactionDTO> moduleAlternativeProperties)
         {
-            _module = moduleDTO.ToModel;
+            _module = module;
 
             _moduleConfigurationDTO = moduleConfigurationDTO;
 

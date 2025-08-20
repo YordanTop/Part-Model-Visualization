@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PartModelVis.Core.ModuleExporters.Interfaces
 {
-    public interface IExporterType
+    public interface IExporterType:IDisposable
     {
         /// <summary>
         /// <see cref="SerializeChanges"/> is saving and exporting the module based of the given file format.

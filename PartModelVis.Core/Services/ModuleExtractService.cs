@@ -14,10 +14,14 @@ namespace PartModelVis.Core.Services
         public required string FileName { get; set; }
 
 
-        public Module ExtractModule(string moduleVariant)
+        public Module ExtractModule(string moduleVariant, string moduleCarLine)
         {
-            var extractor = ExtractorConfiguration.InitializeExtractor(FileName);
-            return extractor.ExtractModule(moduleVariant);
+
+            using (ExtractorConfiguration extractorConfiguration = new ExtractorConfiguration())
+            {
+                var extractor = extractorConfiguration.InitializeExtractor(FileName);
+                return extractor.ExtractModule(moduleVariant,moduleCarLine);
+            }
         }
     }
 }

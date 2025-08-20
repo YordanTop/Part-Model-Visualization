@@ -20,12 +20,5 @@ namespace PartModelVis.Core.Models.ObservableDTO
         [ObservableProperty]
         private List<ModuleAlternativeProperty> _modulesProperties;
 
-        public Module ToModel => new()
-        {
-            Variant = _variant,
-            CarLine = _carLine,
-            ModuleProperties = _modulesProperties
-        };
-
     }
 }

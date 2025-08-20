@@ -17,9 +17,9 @@ namespace PartModelVis.Core.ModuleExtractors.Extractors
 {
     public class XmlModuleExtractor: IExtractorType
     {
-        private readonly string _variantXPath = "/Module[Variant={0}]/Variant";
-        private readonly string _carLineXPath = "/Module[Variant={0}]/CarLine";
-        private readonly string _modulePropertiesXPath = "/Module[Variant={0}]/ModuleProperties/ModuleAlternativeProperty";
+        private readonly string _variantXPath = "/Module[Variant='{0}']/Variant";
+        private readonly string _carLineXPath = "/Module[CarLine='{0}']/CarLine";
+        private readonly string _modulePropertiesXPath = "/Module[Variant='{0}']/ModuleProperties/ModuleAlternativeProperty";
 
 
         private readonly XmlDocument _moduleInfoDocument = new XmlDocument();
@@ -29,18 +29,20 @@ namespace PartModelVis.Core.ModuleExtractors.Extractors
             _moduleInfoDocument.Load(fileInfo);
         }
 
-        public Module ExtractModule(string moduleVariant)
+
+        public Module ExtractModule(string moduleVariant, string moduleCarLine)
         {
             Module module = new Module();
 
+
             // Variant
-            module.Variant = _moduleInfoDocument.SelectSingleNode(string.Format(_variantXPath, moduleVariant)).InnerText;
+            var variant = _moduleInfoDocument.SelectSingleNode(string.Format(_variantXPath, moduleVariant));
 
             // CarLine
-            module.CarLine = _moduleInfoDocument.SelectSingleNode(string.Format(_carLineXPath, moduleVariant)).InnerText;
+            var carLine = _moduleInfoDocument.SelectSingleNode(string.Format(_carLineXPath, moduleCarLine));
 
 
-            if (module.Variant == null || module.CarLine == null)
+            if (variant == null || carLine == null)
                 return null; // no matches
 
 
@@ -67,6 +69,8 @@ namespace PartModelVis.Core.ModuleExtractors.Extractors
                 }
             }
 
+            module.Variant = variant.InnerText;
+            module.CarLine = carLine.InnerText;
             module.ModuleProperties = propertiesList;
 
 

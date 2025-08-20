@@ -47,9 +47,10 @@ namespace PartModelVis
             services.AddTransient<IModuleVisualizeService, ModuleVisualizeService>();
 
             //Models
-            services.AddSingleton<ModuleDTO>();
+            services.AddSingleton<Module>();
 
             //Model DTOs
+            services.AddSingleton<ModuleDTO>();
             services.AddSingleton<ModuleConfigurationDTO>();
             
             services.AddTransient<ObservableCollection<ModuleAlternativePropertyTransactionDTO>>(provider =>

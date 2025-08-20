@@ -24,5 +24,10 @@ namespace PartModelVis.Core.ModuleExporters.Exproters
         {
             JsonSerializer.Serialize(_file,module);
         }
+
+        public void Dispose()
+        {
+            _file.Dispose();
+        }
     }
 }

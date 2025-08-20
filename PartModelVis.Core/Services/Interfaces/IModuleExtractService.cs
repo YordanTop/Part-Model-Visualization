@@ -19,6 +19,6 @@ namespace PartModelVis.Core.Services.Interfaces
         /// </summary>
         /// <param name="moduleVariant">The variant of the module</param>
         /// <returns>Returns the content of the module</returns>
-        public Module ExtractModule(string moduleVariant);
+        public Module ExtractModule(string moduleVariant, string moduleCarLine);
     }
 }
