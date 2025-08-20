@@ -1,2 +1,2 @@
-variant,variant_real,pcb,blinker,visher,gera
-10542218-0009,10542218,181919191991919,1415-06,12123574-06,121212-05
+Variant,CarLine,ModuleProperties
+3213124,BMW-12321,"[{Name:CarLine,FilePropertyName:proj_carLine},{Name:RightLever,FilePropertyName:proj_rightLever},{Name:LeftLever,FilePropertyName:proj_leftLever},{Name:PCB,FilePropertyName:proj_pcb},{Name:SRC,FilePropertyName:proj_src},{Name:SRCSwitch,FilePropertyName:proj_srcSwitch}]"

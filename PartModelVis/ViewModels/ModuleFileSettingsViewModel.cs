@@ -17,7 +17,7 @@ using System.Windows.Data;
 
 namespace PartModelVis.ViewModels
 {
-    public partial class ModuleSettingsViewModel:ObservableObject
+    public partial class ModuleFileSettingsViewModel:ObservableObject
     {
         
         [ObservableProperty]
@@ -31,7 +31,10 @@ namespace PartModelVis.ViewModels
         private IModuleExportService _moduleExportService;
 
 
-        public ModuleSettingsViewModel(ModuleDTO moduleDTO, ModuleConfigurationDTO moduleConfigurationDTO, IModuleExportService moduleExportSerivce, ObservableCollection<ModuleAlternativePropertyTransactionDTO> moduleAlternativeProperties)
+        public ModuleFileSettingsViewModel(ModuleDTO moduleDTO,
+                                           ModuleConfigurationDTO moduleConfigurationDTO,
+                                           IModuleExportService moduleExportSerivce,
+                                           ObservableCollection<ModuleAlternativePropertyTransactionDTO> moduleAlternativeProperties)
         {
             _module = moduleDTO.ToModel;
 

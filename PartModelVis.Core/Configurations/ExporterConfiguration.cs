@@ -3,6 +3,7 @@ using PartModelVis.Core.Helper;
 using PartModelVis.Core.ModuleExporters.Factory;
 using PartModelVis.Core.ModuleExporters.Interfaces;
 using PartModelVis.Core.ModuleExporters.Providers;
+using PartModelVis.Core.ModuleExtractors.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,9 +15,9 @@ namespace PartModelVis.Core.Configurations
 {
     public static class ExporterConfiguration
     {
+
         public static IExporterType InitializeExporter(string filePath)
         {
-            //Available extansions.
             List<ExporterTypeFactory> extractorTypeFactories = new List<ExporterTypeFactory>()
             {
                 new XmlModuleExporterProvider(),
@@ -24,20 +25,26 @@ namespace PartModelVis.Core.Configurations
                 new CsvModuleExporterProvider()
             };
 
+            using (FileStream fileStream = OpenOrCreateFile(filePath))
+            {
+                string extension = GetFileExtension(fileStream);
+                FactoryExporter factory = new FactoryExporter(extractorTypeFactories);
+                return factory.CreateType(fileStream, extension);
+            }
+        }
 
+
+        private static FileStream OpenOrCreateFile(string filePath)
+        {
             FileExistsHandler fileExistsHandler = new FileExistsHandler(filePath);
+            return fileExistsHandler.IsConditionValid()
+                ? FileHelper.FetchFile(filePath)
+                : File.Create(filePath);
+        }
 
-            // if the file does not exist it create a new file otherwise it fetches the existing one.
-            FileStream fileStream = fileExistsHandler.IsConditionValid()?
-                                                                            FileHelper.FetchFile(filePath):
-                                                                            File.Create(filePath);
-
-
-            string extansion = FileHelper.GetExtansion(fileStream.Name);
-
-            FactoryExporter factory = new FactoryExporter(extractorTypeFactories);
-
-            return factory.CreateType(fileStream, extansion);
+        private static string GetFileExtension(FileStream fileStream)
+        {
+            return FileHelper.GetExtansion(fileStream.Name);
         }
 
     }

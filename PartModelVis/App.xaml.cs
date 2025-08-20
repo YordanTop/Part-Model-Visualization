@@ -40,8 +40,11 @@ namespace PartModelVis
         {
 
             //Services
+
             services.AddTransient<IWindowDialogService,WindowService>();
             services.AddTransient<IModuleExportService, ModuleExportService>();
+            services.AddTransient<IModuleExtractService, ModuleExtractService>();
+            services.AddTransient<IModuleVisualizeService, ModuleVisualizeService>();
 
             //Models
             services.AddSingleton<ModuleDTO>();
@@ -53,7 +56,6 @@ namespace PartModelVis
             {
                 // DataGrid configuration setup
                 return new ObservableCollection<ModuleAlternativePropertyTransactionDTO>() {
-                new ModuleAlternativePropertyTransactionDTO(){Name = "CarLine", FilePropertyName = "proj_carLine"},
                 new ModuleAlternativePropertyTransactionDTO(){Name = "RightLever", FilePropertyName = "proj_rightLever"},
                 new ModuleAlternativePropertyTransactionDTO(){Name = "LeftLever", FilePropertyName = "proj_leftLever"},
                 new ModuleAlternativePropertyTransactionDTO(){Name = "PCB", FilePropertyName = "proj_pcb"},
@@ -73,7 +75,7 @@ namespace PartModelVis
 
             //Pop ups
             services.AddTransient<AddModuleSettingsViewModel>();
-            services.AddTransient<ModuleSettingsViewModel>();
+            services.AddTransient<ModuleFileSettingsViewModel>();
             services.AddTransient<PartsVisualSettingsViewModel>();
 
             //Views

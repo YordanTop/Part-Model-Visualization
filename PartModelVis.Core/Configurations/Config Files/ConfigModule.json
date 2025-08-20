@@ -1,14 +1,1 @@
-{
-  "Ept": {
-    "Row": {
-      "variant": "10542218-0009",
-      "Columns": {
-        "variant_real": "10542218",
-        "pcb": "181919191991919",
-        "blinker": "1415-06",
-        "visher": "12123574-06",
-        "gera": "121212-05"
-      }
-    }
-  }
-}
+{"Variant":"32143-009","CarLine":"Audi-312","ModuleProperties":[{"Name":"RightLever","FilePropertyName":"proj_rightLever","Description":"\u0414\u044F\u0441\u043D\u0430 \u0440\u044A\u0447\u043A\u0430","PicturePath":"C:\\Users\\Dani\\source\\repos\\PartModelVisualisation\\Pictures with numbers\\10533095.png"},{"Name":"LeftLever","FilePropertyName":"proj_leftLever","Description":"\u041B\u044F\u0432\u0430 \u0440\u044A\u0447\u043A\u0430","PicturePath":"C:\\Users\\Dani\\source\\repos\\PartModelVisualisation\\Pictures with numbers\\10533091.png"},{"Name":"PCB","FilePropertyName":"proj_pcb","Description":null,"PicturePath":null},{"Name":"SRC","FilePropertyName":"proj_src","Description":null,"PicturePath":null},{"Name":"SRCSwitch","FilePropertyName":"proj_srcSwitch","Description":null,"PicturePath":null}]}

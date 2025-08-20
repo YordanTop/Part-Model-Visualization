@@ -46,6 +46,7 @@ namespace PartModelVis.ViewModels
             ChainExceptionHandler chainExceptionHandler = 
                 new ChainExceptionHandler(
                     new FieldEmptyHandler(_moduleConfiguration.Variant) { MessageHandler = "Fill the textboxes!" },
+                    new FieldEmptyHandler(_moduleConfiguration.CarLine) { MessageHandler = "Fill the textboxes!" },
                     new FieldEmptyHandler(_moduleConfiguration.InformationFile) { MessageHandler = "Fill the textboxes!" },
                     new FieldEmptyHandler(_moduleConfiguration.VisualFile) { MessageHandler = "Fill the textboxes!" },
                     new FileExistsHandler(_moduleConfiguration.InformationFile) { MessageHandler = $"The file \"{_moduleConfiguration.InformationFile}\" doesn't exist!"},
@@ -62,8 +63,8 @@ namespace PartModelVis.ViewModels
 
         private void UpdateModule()
         {
-            _moduleDTO.Variant = _moduleConfiguration.Variant;
-            _moduleDTO.CarLine = _moduleConfiguration.CarLine;
+            _moduleDTO.Variant = ModuleConfiguration.Variant;
+            _moduleDTO.CarLine = ModuleConfiguration.CarLine;
         }
 
         [RelayCommand]
@@ -71,8 +72,9 @@ namespace PartModelVis.ViewModels
         {
             ChainExceptionHandler chainExceptionHandler =
                 new ChainExceptionHandler(
-                    new FieldEmptyHandler(_moduleConfiguration.InformationFile) { MessageHandler = "Fill the module path configuration textbox!" },
-                    new FieldEmptyHandler(_moduleConfiguration.Variant) { MessageHandler = "Fill the module variant textbox!" });
+                    new FieldEmptyHandler(ModuleConfiguration.InformationFile) { MessageHandler = "Fill the module path configuration textbox!" },
+                    new FieldEmptyHandler(ModuleConfiguration.Variant) { MessageHandler = "Fill the module variant textbox!" },
+                    new FieldEmptyHandler(ModuleConfiguration.CarLine) { MessageHandler = "Fill the car line textbox!" });
 
 
             if (chainExceptionHandler.CheckConditions() == false)
@@ -94,7 +96,7 @@ namespace PartModelVis.ViewModels
                 return;
             }
 
-            _windowService.ShowDialog<ModuleSettingsView, ModuleSettingsViewModel>();
+            _windowService.ShowDialog<ModuleSettingsView, ModuleFileSettingsViewModel>();
         }
 
         [RelayCommand]

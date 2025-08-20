@@ -21,7 +21,7 @@ namespace PartModelVis.Views.PopUps
     /// </summary>
     public partial class ModuleSettingsView : Window
     {
-        public ModuleSettingsView(ModuleSettingsViewModel vm)
+        public ModuleSettingsView(ModuleFileSettingsViewModel vm)
         {
             InitializeComponent();
 

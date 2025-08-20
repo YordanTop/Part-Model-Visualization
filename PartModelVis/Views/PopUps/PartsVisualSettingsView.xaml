@@ -40,6 +40,12 @@
 
             </Border>
 
+            <Viewbox Stretch="Uniform" Margin="50,10,50,10" Grid.Row="1">
+                <Canvas Width="700" Height="300">
+                   
+                </Canvas>
+            </Viewbox>
+
             <!--Save button-->
 
             <Button Grid.Row="2" Width="auto" Margin="45,5,45,5" Background="White" FontSize="20" Command="{Binding SaveChangesCommand}" >

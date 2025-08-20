@@ -59,7 +59,7 @@ namespace PartModelVis.ViewModels
         private void ModuleConfig()
         {
             if(isModuleLoaded())
-                _windowService.ShowDialog<ModuleSettingsView, ModuleSettingsViewModel>();
+                _windowService.ShowDialog<ModuleSettingsView, ModuleFileSettingsViewModel>();
         }
 
 

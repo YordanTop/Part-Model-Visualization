@@ -20,20 +20,27 @@ namespace PartModelVis.Core.Configurations
         /// <returns></returns>
         public static IExtractorType InitializeExtractor(string filePath)
         {
-            //Available extansions.
             List<ExtractorTypeFactory> extractorTypeFactories = new List<ExtractorTypeFactory>()
             {
                 new XmlModuleExtractorProvider()
             };
 
+            using (FileStream fileStream = OpenFile(filePath))
+            {
+                string extension = GetFileExtension(fileStream);
+                FactoryExtractors factory = new FactoryExtractors(extractorTypeFactories);
+                return factory.CreateType(fileStream, extension);
+            }
+        }
 
-            var fileStream = FileHelper.FetchFile(filePath);
+        private static FileStream OpenFile(string filePath)
+        {
+            return FileHelper.FetchFile(filePath);
+        }
 
-            string extansion = FileHelper.GetExtansion(fileStream.Name);
-
-            FactoryExtractors factory = new FactoryExtractors(extractorTypeFactories);
-
-            return factory.CreateType(fileStream, extansion);
+        private static string GetFileExtension(FileStream fileStream)
+        {
+            return FileHelper.GetExtansion(fileStream.Name);
         }
     }
 }
