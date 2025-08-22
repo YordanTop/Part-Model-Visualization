@@ -81,7 +81,7 @@ namespace PartModelVis.ViewModels
                     new FieldEmptyHandler(ModuleConfiguration.Variant) { MessageHandler = "Fill the module variant textbox!" },
                     new FieldEmptyHandler(ModuleConfiguration.CarLine) { MessageHandler = "Fill the car line textbox!" },
                     new FileExistsHandler(ModuleConfiguration.InformationFile) { MessageHandler = $"The file \"{_moduleConfiguration.InformationFile}\" doesn't exist!" });
-
+            new InvalidModuleHandler(_module, ModuleConfiguration.Variant, ModuleConfiguration.CarLine) { MessageHandler = "The module information about the varaint or the car line it's invalid!" };
 
             if (chainExceptionHandler.CheckConditions() == false)
                 return;
@@ -108,13 +108,19 @@ namespace PartModelVis.ViewModels
         [RelayCommand]
         private void SelectInformationFilePath()
         {
-            ModuleConfiguration.InformationFile = FileHelper.OpenFilePath();
+            var file = FileHelper.OpenFilePath();
+
+            if(!string.IsNullOrEmpty(file))
+                ModuleConfiguration.InformationFile = file;
         }
 
         [RelayCommand]
         private void SelectVisualFilePath()
         {
-            ModuleConfiguration.VisualFile = FileHelper.OpenFilePath();
+            var file = FileHelper.OpenFilePath();
+
+            if (!string.IsNullOrEmpty(file))
+                ModuleConfiguration.VisualFile = file;
         }
 
     }

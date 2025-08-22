@@ -1,4 +1,5 @@
-﻿using PartModelVis.ViewModels;
+﻿using PartModelVis.Core.Models;
+using PartModelVis.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,14 @@ namespace PartModelVis.Views.PopUps
     /// </summary>
     public partial class PartsVisualSettingsView : Window
     {
+
+
         public PartsVisualSettingsView(PartsVisualSettingsViewModel vm)
         {
             InitializeComponent();
 
             DataContext = vm;
         }
+
     }
 }

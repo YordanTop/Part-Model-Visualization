@@ -12,16 +12,6 @@ namespace PartModelVis.Core.Helper
 {
     public static class FileHelper
     {
-        public static FileStream FetchFile(string filePath)
-        {
-            FileExistsHandler fileHandler = new FileExistsHandler(filePath);
-
-            if (!fileHandler.IsConditionValid())
-                throw new FileNotFoundException($"the file format was not declare!");
-            
-            return File.Open(filePath, FileMode.Open);
-        }
-
         public static string GetExtansion(string filePath)
         {
             FileExistsHandler fileHandler = new FileExistsHandler(filePath);

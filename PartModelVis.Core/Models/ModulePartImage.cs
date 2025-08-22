@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,16 +8,25 @@ using System.Windows.Media.Imaging;
 
 namespace PartModelVis.Core.Models
 {
-    public class ModulePartImage
+    public partial class ModulePartImage:ObservableObject
     {
-        public BitmapImage Image { get; set; }
+        [ObservableProperty]
+        private BitmapImage _image;
+        [ObservableProperty]
+        private string _description;
+        [ObservableProperty]
+        private int _width  = 100; //default value for the width
+        [ObservableProperty]
+        private int _height = 100; //default value for the height
 
-        public string Description { get; set; }
-        public int Width { get; set; } = 200; //default value for the width
-        public int Height { get; set; } = 200; //default value for the height
+        [ObservableProperty]
+        private double _positionX = 570;
+        [ObservableProperty]
+        private double _positionY;
+        [ObservableProperty]
+        private int _rotation;
 
-        public double PositionX { get; set; }
-        public double PositionY { get; set; }
-        public double Rotation { get; set; }
+        [ObservableProperty]
+        private bool isSelected;
     }
 }

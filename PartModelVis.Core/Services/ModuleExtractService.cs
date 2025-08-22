@@ -3,6 +3,7 @@ using PartModelVis.Core.Models;
 using PartModelVis.Core.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,10 @@ namespace PartModelVis.Core.Services
         public Module ExtractModule(string moduleVariant, string moduleCarLine)
         {
 
-            using (ExtractorConfiguration extractorConfiguration = new ExtractorConfiguration())
+            using (FileStream file = File.Open(FileName, FileMode.Open))
             {
-                var extractor = extractorConfiguration.InitializeExtractor(FileName);
-                return extractor.ExtractModule(moduleVariant,moduleCarLine);
+                var extractor = ExtractorConfiguration.InitializeExtractor(file);
+                return extractor.ExtractModule(moduleVariant, moduleCarLine);
             }
         }
     }

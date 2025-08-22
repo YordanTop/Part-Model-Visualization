@@ -5,27 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using MouseEventArgs = System.Windows.Input.MouseEventArgs;
+using Point = System.Windows.Point;
 
 namespace PartModelVis.Core.Services
 {
     public class ModuleVisualizeService : IModuleVisualizeService
     {
-        public void DragImage(ModulePartImage partImage)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DropImage(ModulePartImage partImage)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<ModulePartImage> ImageCollectionInstance(Module module)
         {
-            if (module == null)
-                return new List<ModulePartImage>();
-
             var newCollection = new List<ModulePartImage>();
 
             foreach (var moduleRow in module.ModuleProperties)
@@ -41,16 +34,6 @@ namespace PartModelVis.Core.Services
             }
 
             return newCollection;
-        }
-
-        public void RotateImage(ModulePartImage partImage)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ScaleImage(ModulePartImage partImage)
-        {
-            throw new NotImplementedException();
         }
     }
 }

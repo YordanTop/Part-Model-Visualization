@@ -11,43 +11,28 @@ using System.Threading.Tasks;
 
 namespace PartModelVis.Core.Configurations
 {
-    public class ExtractorConfiguration:IDisposable
+    public static class ExtractorConfiguration
     {
-
-        private FileStream _file;
         /// <summary>
         /// Makes instance of a module extractor.
         /// </summary>
-        /// <param name="filePath">Absoulute file path for the module info.</param>
+        /// <param name="file">Absoulute file path for the module info.</param>
         /// <returns></returns>
-        public IExtractorType InitializeExtractor(string filePath)
+        public static IExtractorType InitializeExtractor(FileStream file)
         {
             List<ExtractorTypeFactory> extractorTypeFactories = new List<ExtractorTypeFactory>()
             {
                 new XmlModuleExtractorProvider()
             };
 
-            _file = OpenFile(filePath);
-
-             string extension = GetFileExtension(_file);
+             string extension = GetFileExtension(file);
              FactoryExtractors factory = new FactoryExtractors(extractorTypeFactories);
-             return factory.CreateType(_file, extension);
+             return factory.CreateType(file, extension);
             
         }
-
-        private FileStream OpenFile(string filePath)
-        {
-            return FileHelper.FetchFile(filePath);
-        }
-
-        private string GetFileExtension(FileStream fileStream)
+        private static string GetFileExtension(FileStream fileStream)
         {
             return FileHelper.GetExtansion(fileStream.Name);
-        }
-
-        public void Dispose()
-        {
-            _file?.Close();
         }
     }
 }

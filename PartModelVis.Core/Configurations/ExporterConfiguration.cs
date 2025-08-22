@@ -13,12 +13,10 @@ using System.Threading.Tasks;
 
 namespace PartModelVis.Core.Configurations
 {
-    public class ExporterConfiguration:IDisposable
+    public static class ExporterConfiguration
     {
 
-        private  FileStream _file;
-
-        public IExporterType InitializeExporter(string filePath)
+        public static IExporterType InitializeExporter(FileStream fileStream)
         {
             List<ExporterTypeFactory> extractorTypeFactories = new List<ExporterTypeFactory>()
             {
@@ -27,7 +25,6 @@ namespace PartModelVis.Core.Configurations
                 new CsvModuleExporterProvider()
             };
 
-            FileStream fileStream = OpenOrCreateFile(filePath);
             string extension = GetFileExtension(fileStream);
             FactoryExporter factory = new FactoryExporter(extractorTypeFactories);
     
@@ -35,23 +32,9 @@ namespace PartModelVis.Core.Configurations
             
         }
 
-
-        private FileStream OpenOrCreateFile(string filePath)
-        {
-            FileExistsHandler fileExistsHandler = new FileExistsHandler(filePath);
-            return fileExistsHandler.IsConditionValid()
-                ? FileHelper.FetchFile(filePath)
-                : File.Create(filePath);
-        }
-
-        private string GetFileExtension(FileStream fileStream)
+        private static string GetFileExtension(FileStream fileStream)
         {
             return FileHelper.GetExtansion(fileStream.Name);
-        }
-
-        public void Dispose()
-        {
-            _file?.Close();
         }
     }
 }

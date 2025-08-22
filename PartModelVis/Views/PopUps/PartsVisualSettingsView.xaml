@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PartModelVis.Views.PopUps"
         xmlns:vm="clr-namespace:PartModelVis.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:models="clr-namespace:PartModelVis.Core.Models;assembly=PartModelVis.Core"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:PartsVisualSettingsViewModel}"
@@ -45,8 +46,8 @@
 
             </Border>
 
-            <Viewbox Stretch="Uniform" Margin="50,10,50,10" Grid.Row="1">
-                <Canvas Width="700" Height="300">
+            <Viewbox Stretch="Fill" Margin="50,10,50,5"   Grid.Row="1">
+                <Canvas ClipToBounds="True" Width="700" Height="300">
                     <ItemsControl ItemsSource="{Binding PartImages}">
 
                         <ItemsControl.ItemsPanel>
@@ -68,12 +69,35 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="{x:Type models:ModulePartImage}">
                                 <Image Source="{Binding Image}" 
-                           Width="{Binding Width}" 
-                           Height="{Binding Height}" 
-                           RenderTransformOrigin="0.5,0.5">
+                                       Width="{Binding Width}" 
+                                       Height="{Binding Height}"
+                                       Canvas.Left="{Binding PositionX}"  
+                                       Canvas.Top="{Binding PositionY}"   
+                                       RenderTransformOrigin="0.5,0.5"> 
                                     <Image.RenderTransform>
                                         <RotateTransform Angle="{Binding Rotation}" />
                                     </Image.RenderTransform>
+                                    
+                                    
+                                    <!-- Events -->
+                                    <i:Interaction.Triggers>
+                                        
+                                        <!--Selecting an image!-->
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding DataContext.SelectImageCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                   PassEventArgsToCommand="True"/>
+
+                                        </i:EventTrigger>
+
+                                        <!--Selecting an image!-->
+                                        <i:EventTrigger EventName="MouseMove">
+                                            <i:InvokeCommandAction Command="{Binding DataContext.DragImageCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                    PassEventArgsToCommand="True" />
+                                        </i:EventTrigger>
+
+                                    </i:Interaction.Triggers>                                   
+                                    
+                                    
                                 </Image>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

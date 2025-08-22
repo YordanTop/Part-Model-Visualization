@@ -4,20 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 namespace PartModelVis.Core.Services.Interfaces
 {
     public interface IModuleVisualizeService
     {
-
         public List<ModulePartImage> ImageCollectionInstance(Module module);
-
-        public void DragImage(ModulePartImage partImage);
-
-        public void DropImage(ModulePartImage partImage);
-
-        public void RotateImage(ModulePartImage partImage);
-
-        public void ScaleImage(ModulePartImage partImage);
     }
 }

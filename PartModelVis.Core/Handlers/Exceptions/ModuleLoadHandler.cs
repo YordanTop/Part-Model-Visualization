@@ -24,7 +24,7 @@ namespace PartModelVis.Core.Handlers.Exceptions
 
         public void PopUpMessage()
         {
-            MessageBox.Show(MessageHandler, "Module exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(MessageHandler, "Module Loading exception!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

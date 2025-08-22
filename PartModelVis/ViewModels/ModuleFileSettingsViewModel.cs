@@ -81,6 +81,7 @@ namespace PartModelVis.ViewModels
 
         private void UpdateInformationFile()
         {
+
             _moduleConfigurationDTO.InformationFile = _moduleExportService.FileName;
         }
 
