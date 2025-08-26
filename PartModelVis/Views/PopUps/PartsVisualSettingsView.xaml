@@ -1,126 +1,140 @@
-﻿<Window x:Class="PartModelVis.Views.PopUps.PartsVisualSettingsView"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PartModelVis.Views.PopUps"
         xmlns:vm="clr-namespace:PartModelVis.ViewModels"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:models="clr-namespace:PartModelVis.Core.Models;assembly=PartModelVis.Core"
+        xmlns:views="clr-namespace:PartModelVis.Views.PopUps"
         mc:Ignorable="d"
+        x:Class="PartModelVis.Views.PopUps.PartsVisualSettingsView"
         d:DataContext="{d:DesignInstance vm:PartsVisualSettingsViewModel}"
-        Title="PartsVisualSettingsView" MinHeight="450" MinWidth="800"
-        
-        >
-    <Grid>
-
-        <Grid Height="Auto" Width="Auto">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="60"/>
-            </Grid.RowDefinitions>
-
-            <!--Background-->
-            <Border Grid.Column="0" Grid.RowSpan="3">
-                <Border.Background>
-                    <SolidColorBrush Color="#FF4C82AB"/>
-                </Border.Background>
-
-            </Border>
-
-            <!--Title-->
-            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" >Visuals configuration.</TextBlock>
-
-            <!--Module info configuration panel-->
-            <Border CornerRadius="10" Margin="45,5,45,0" Grid.Row="1">
-                <Border.Background>
-                    <SolidColorBrush Color="White"/>
-                </Border.Background>
-
-            </Border>
-
-            <Viewbox Stretch="Fill" Margin="50,10,50,5"   Grid.Row="1">
-                <Canvas ClipToBounds="True" Width="700" Height="300">
-                    <ItemsControl ItemsSource="{Binding PartImages}">
-
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <Canvas />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-
-                        <ItemsControl.ItemContainerStyle>
-                            <Style TargetType="{x:Type ContentPresenter}">
-                                <Setter Property="Canvas.Left" Value="{Binding PositionX}" />
-                                <Setter Property="Canvas.Top" Value="{Binding PositionY}" />
-                                <Setter Property="Width" Value="{Binding Width}"/>
-                                <Setter Property="Height" Value="{Binding Height}"/>
-                            </Style>
-                        </ItemsControl.ItemContainerStyle>
+        Title="PartsVisualSettingsView" MinHeight="450" MinWidth="800">
 
 
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate DataType="{x:Type models:ModulePartImage}">
-                                <Image Source="{Binding Image}" 
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:ImageAttributesViewModel}">
+            <views:ImageAttributesView/>
+
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Height="Auto" Width="Auto">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <!--Background-->
+        <Border Grid.Column="0" Grid.RowSpan="3" Background="#FF4C82AB"/>
+
+        <!--Title-->
+        <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" ><Run Text="Visuals configuration."/></TextBlock>
+
+        <!--Module info configuration panel-->
+        <Border CornerRadius="10" Margin="45,5,45,0" Grid.Row="1" Background="White"/>
+
+        <Viewbox Stretch="Fill" Margin="50,10,50,5" Grid.Row="1">
+            <Canvas ClipToBounds="True" Width="700" Height="300">
+                <ItemsControl ItemsSource="{Binding PartImages}">
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Canvas.Left" Value="{Binding PositionX}" />
+                            <Setter Property="Canvas.Top" Value="{Binding PositionY}" />
+                            <Setter Property="Width" Value="{Binding Width}"/>
+                            <Setter Property="Height" Value="{Binding Height}"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type models:ModulePartImage}">
+                            <Image Source="{Binding Image}" 
                                        Width="{Binding Width}" 
                                        Height="{Binding Height}"
                                        Canvas.Left="{Binding PositionX}"  
-                                       Canvas.Top="{Binding PositionY}"   
-                                       RenderTransformOrigin="0.5,0.5"> 
-                                    <Image.RenderTransform>
-                                        <RotateTransform Angle="{Binding Rotation}" />
-                                    </Image.RenderTransform>
-                                    
-                                    
-                                    <!-- Events -->
-                                    <i:Interaction.Triggers>
-                                        
-                                        <!--Selecting an image!-->
-                                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                                            <i:InvokeCommandAction Command="{Binding DataContext.SelectImageCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                       Canvas.Top="{Binding PositionY}"
+                                       RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="{Binding Rotation}" />
+                                </Image.RenderTransform>
+
+
+                                <!-- Events -->
+                                <i:Interaction.Triggers>
+
+                                    <!--Selecting an image!-->
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding DataContext.SelectImageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                                                    PassEventArgsToCommand="True"/>
 
-                                        </i:EventTrigger>
+                                    </i:EventTrigger>
 
-                                        <!--Selecting an image!-->
-                                        <i:EventTrigger EventName="MouseMove">
-                                            <i:InvokeCommandAction Command="{Binding DataContext.DragImageCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                    <!--Rotating an image!-->
+                                    <i:EventTrigger EventName="MouseMove">
+                                        <i:InvokeCommandAction Command="{Binding DataContext.RotateImageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                                       PassEventArgsToCommand="True"/>
+
+                                    </i:EventTrigger>
+
+                                    <!--Scale an image!-->
+                                    <i:EventTrigger EventName="MouseRightButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding DataContext.RotateImageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                                   PassEventArgsToCommand="True"/>
+
+                                    </i:EventTrigger>
+
+                                    <!--Dragging an image!-->
+                                    <i:EventTrigger EventName="MouseMove">
+                                        <i:InvokeCommandAction Command="{Binding DataContext.DragImageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                                                     PassEventArgsToCommand="True" />
-                                        </i:EventTrigger>
+                                    </i:EventTrigger>
 
-                                    </i:Interaction.Triggers>                                   
-                                    
-                                    
-                                </Image>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </Canvas>
-            </Viewbox>
+                                </i:Interaction.Triggers>
 
-            <!--Save button-->
 
-            <Button Grid.Row="2" Width="auto" Margin="45,5,45,5" Background="White" FontSize="20" Command="{Binding SaveChangesCommand}" >
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
+                            </Image>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Canvas>
+        </Viewbox>
+
+        <ContentControl
+                Grid.Row="1" Height="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                Content="{Binding ImageAttributesViewModel}"/>
+
+        <!--Save button-->
+
+        <Button Grid.Row="3" Width="auto" Margin="45,5,45,5" Background="White" FontSize="20" Command="{Binding SaveChangesCommand}" Content="Save module visuals" >
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
                 CornerRadius="10" 
                 
                 BorderBrush="{TemplateBinding BorderBrush}" 
                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template> Save module visuals
-            </Button>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
-        </Grid>
     </Grid>
 </Window>

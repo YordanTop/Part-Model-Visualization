@@ -48,6 +48,7 @@ namespace PartModelVis
 
             //Models
             services.AddSingleton<Module>();
+            services.AddSingleton<ModulePartImage>();
 
             //Model DTOs
             services.AddSingleton<ModuleDTO>();
@@ -78,6 +79,7 @@ namespace PartModelVis
             services.AddTransient<AddModuleSettingsViewModel>();
             services.AddTransient<ModuleFileSettingsViewModel>();
             services.AddTransient<PartsVisualSettingsViewModel>();
+            services.AddTransient<ImageAttributesViewModel>();
 
             //Views
 
@@ -91,6 +93,7 @@ namespace PartModelVis
             services.AddTransient<AddModuleSettingsView>();
             services.AddTransient<ModuleSettingsView>();
             services.AddTransient<PartsVisualSettingsView>();
+            services.AddTransient<ImageAttributesView>();
         }
 
 

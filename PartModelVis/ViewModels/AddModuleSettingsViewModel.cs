@@ -53,9 +53,7 @@ namespace PartModelVis.ViewModels
                     new FieldEmptyHandler(_moduleConfiguration.Variant) { MessageHandler = "Fill the textboxes!" },
                     new FieldEmptyHandler(_moduleConfiguration.CarLine) { MessageHandler = "Fill the textboxes!" },
                     new FieldEmptyHandler(_moduleConfiguration.InformationFile) { MessageHandler = "Fill the textboxes!" },
-                    new FieldEmptyHandler(_moduleConfiguration.VisualFile) { MessageHandler = "Fill the textboxes!" },
-                    new FileExistsHandler(_moduleConfiguration.InformationFile) { MessageHandler = $"The file \"{_moduleConfiguration.InformationFile}\" doesn't exist!"},
-                    new FileExistsHandler(_moduleConfiguration.VisualFile) { MessageHandler = $"The file \"{_moduleConfiguration.VisualFile}\" doesn't exist!" }
+                    new FileExistsHandler(_moduleConfiguration.InformationFile) { MessageHandler = $"The file \"{_moduleConfiguration.InformationFile}\" doesn't exist!"}
                 );
 
             if (chainExceptionHandler.CheckConditions() == false)
@@ -70,24 +68,6 @@ namespace PartModelVis.ViewModels
         {
             _moduleDTO.Variant = ModuleConfiguration.Variant;
             _moduleDTO.CarLine = ModuleConfiguration.CarLine;
-        }
-
-        [RelayCommand]
-        private void SetupVisual()
-        {
-            ChainExceptionHandler chainExceptionHandler =
-                new ChainExceptionHandler(
-                    new FieldEmptyHandler(ModuleConfiguration.InformationFile) { MessageHandler = "Fill the module path configuration textbox!" },
-                    new FieldEmptyHandler(ModuleConfiguration.Variant) { MessageHandler = "Fill the module variant textbox!" },
-                    new FieldEmptyHandler(ModuleConfiguration.CarLine) { MessageHandler = "Fill the car line textbox!" },
-                    new FileExistsHandler(ModuleConfiguration.InformationFile) { MessageHandler = $"The file \"{_moduleConfiguration.InformationFile}\" doesn't exist!" });
-            new InvalidModuleHandler(_module, ModuleConfiguration.Variant, ModuleConfiguration.CarLine) { MessageHandler = "The module information about the varaint or the car line it's invalid!" };
-
-            if (chainExceptionHandler.CheckConditions() == false)
-                return;
-            
-
-            _windowService.ShowDialog<PartsVisualSettingsView, PartsVisualSettingsViewModel>();
         }
 
         [RelayCommand]
@@ -112,15 +92,6 @@ namespace PartModelVis.ViewModels
 
             if(!string.IsNullOrEmpty(file))
                 ModuleConfiguration.InformationFile = file;
-        }
-
-        [RelayCommand]
-        private void SelectVisualFilePath()
-        {
-            var file = FileHelper.OpenFilePath();
-
-            if (!string.IsNullOrEmpty(file))
-                ModuleConfiguration.VisualFile = file;
         }
 
     }

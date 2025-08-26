@@ -1,5 +1,4 @@
-﻿using PartModelVis.Core.Models;
-using PartModelVis.ViewModels;
+﻿using PartModelVis.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PartModelVis.Views.PopUps
 {
     /// <summary>
-    /// Interaction logic for PartsVisualSettingsView.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class PartsVisualSettingsView : Window
+    public partial class ImageAttributesView : UserControl
     {
-        public PartsVisualSettingsView(PartsVisualSettingsViewModel vm)
+        public ImageAttributesView()
         {
             InitializeComponent();
-
-            DataContext = vm;
         }
 
     }

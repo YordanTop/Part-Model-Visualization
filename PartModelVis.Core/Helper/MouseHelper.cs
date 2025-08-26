@@ -25,21 +25,24 @@ namespace PartModelVis.Core.Helper
             return DragPosition;    
         }
 
-        public static Point DragBoundaries(Point elementPoint, int elementHeight, int elementWidth, Canvas canvas)
+        public static int RotateImage(int originalRotatetion, Point currentMousePoint, Point elementCenter)
         {
-            Point Boundary = new Point();
 
-            Boundary.X = Math.Max(0, Math.Min(canvas.ActualWidth - elementWidth, elementPoint.X));
-            Boundary.Y = Math.Max(0, Math.Min(canvas.ActualHeight - elementHeight, elementPoint.Y));
+            double angleDiffrence = Math.Atan2(currentMousePoint.Y - elementCenter.Y, currentMousePoint.X - elementCenter.X);
 
+            int newRotation = (int)(originalRotatetion + angleDiffrence * (180 / Math.PI));
 
-
-            return Boundary;
+            return newRotation;
         }
 
-        public static void RotateImage(MouseEventArgs mouseEvent)
+        public static int RotateImage(int originalRotatetion, Point currentMousePoint, Point elementCenter, float rotatingSpeed)
         {
-            throw new NotImplementedException();
+
+            double angleDiffrence = Math.Atan2(currentMousePoint.Y - elementCenter.Y, currentMousePoint.X - elementCenter.X);
+
+            int newRotation = (int)(originalRotatetion + angleDiffrence * (180 / Math.PI) * rotatingSpeed);
+
+            return newRotation;
         }
 
         public static void ScaleImage(MouseEventArgs mouseEvent)

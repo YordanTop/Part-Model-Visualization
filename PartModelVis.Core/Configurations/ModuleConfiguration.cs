@@ -12,14 +12,13 @@ namespace PartModelVis.Core.Configurations
 
         public string CarLine { get; set; }
 
-        public string VisualFile { get; set; }  
         public string InformationFile { get; set; } 
 
         public bool IsModuleLoaded
         {
             get
             {
-                var properties = new[] { Variant, CarLine, VisualFile, InformationFile };
+                var properties = new[] { Variant, CarLine, InformationFile };
                 return properties.All(p => !string.IsNullOrEmpty(p));
             }
         }

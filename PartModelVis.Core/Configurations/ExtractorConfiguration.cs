@@ -16,23 +16,20 @@ namespace PartModelVis.Core.Configurations
         /// <summary>
         /// Makes instance of a module extractor.
         /// </summary>
-        /// <param name="file">Absoulute file path for the module info.</param>
+        /// <param name="fileStream">Absoulute file path for the module info.</param>
         /// <returns></returns>
-        public static IExtractorType InitializeExtractor(FileStream file)
+        public static IExtractorType InitializeExtractor(FileStream fileStream)
         {
             List<ExtractorTypeFactory> extractorTypeFactories = new List<ExtractorTypeFactory>()
             {
                 new XmlModuleExtractorProvider()
             };
 
-             string extension = GetFileExtension(file);
+             string extension = Path.GetExtension(fileStream.Name);
+
              FactoryExtractors factory = new FactoryExtractors(extractorTypeFactories);
-             return factory.CreateType(file, extension);
+             return factory.CreateType(fileStream, extension);
             
-        }
-        private static string GetFileExtension(FileStream fileStream)
-        {
-            return FileHelper.GetExtansion(fileStream.Name);
         }
     }
 }

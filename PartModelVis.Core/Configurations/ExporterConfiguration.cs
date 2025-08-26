@@ -25,16 +25,11 @@ namespace PartModelVis.Core.Configurations
                 new CsvModuleExporterProvider()
             };
 
-            string extension = GetFileExtension(fileStream);
+            string extension = Path.GetExtension(fileStream.Name);
             FactoryExporter factory = new FactoryExporter(extractorTypeFactories);
     
             return factory.CreateType(fileStream, extension);
             
-        }
-
-        private static string GetFileExtension(FileStream fileStream)
-        {
-            return FileHelper.GetExtansion(fileStream.Name);
         }
     }
 }

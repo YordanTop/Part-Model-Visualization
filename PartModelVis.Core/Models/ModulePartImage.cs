@@ -15,18 +15,15 @@ namespace PartModelVis.Core.Models
         [ObservableProperty]
         private string _description;
         [ObservableProperty]
-        private int _width  = 100; //default value for the width
+        private int _width  = 200; //default value for the width
         [ObservableProperty]
-        private int _height = 100; //default value for the height
+        private int _height = 200; //default value for the height
 
         [ObservableProperty]
-        private double _positionX = 570;
+        private double _positionX;
         [ObservableProperty]
         private double _positionY;
         [ObservableProperty]
         private int _rotation;
-
-        [ObservableProperty]
-        private bool isSelected;
     }
 }
